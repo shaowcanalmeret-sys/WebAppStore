@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}تأكيد الحذف{% endblock %}
+{% block content %}
+<section class="card" style="max-width:600px;margin:16px auto">
+  <h2>تأكيد حذف الفئة</h2>
+  <p>هل أنت متأكد أنك تريد حذف الفئة <strong>{{ offer.name }}</strong>؟</p>
+  <form method="POST">
+    {% csrf_token %}
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <a href="{% url 'category' %}" class="btn secondary">إلغاء</a>
+      <button class="btn" type="submit">تأكيد الحذف</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+<!-- {% block title %}الرئيسية - متجر الهواتف{% endblock %} -->
+{% block content %}
+{% load static %}
+  <h1>أهلاً بك في متجر الهواتف</h1>
+  <p>أفضل العروض والهواتف بأحدث المواصفات.</p>
+<div class="btn" >Hi,{{user.first_name}}</div>
+
+
+  <div class="grid">
+   {%for offer in offers %}
+
+    <div class="card">
+      <div class="product-image">
+       {% if offer.product.image %}
+            <img src="{{ offer.product.image.url }}" alt="{{ offer.product.name }}" width="100">
+          {% else %}
+            لا توجد صورة
+          {% endif %}
+          </div>
+      <h3>{{offer.title}}</h3>
+      <p class="muted">من فئة: <strong>{{offer.product}}</strong></p>
+      <p>السعر: <strong>{{offer.product.price}}</strong>$</p>
+      <p>الخصم: <strong>{{offer.discount_percentage}}</strong>%</p>
+      <p>بعد الخصم: <strong>{{offer.discounted_price}}</strong>$</p>
+      
+      <div style="display:flex;gap:30px;margin-top:30px">
+        <a class="btn" href="{% url 'add_to_cart' offer.id %}">أضف إلى السلة</a>
+        <a class="btn secondary" href="{% url 'offers' %}">تفاصيل</a>
+      </div>
+    </div>
+    {% endfor %}
+    
+{% endblock %}

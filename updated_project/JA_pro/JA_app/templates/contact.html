@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}اتصل بنا{% endblock %}
+{% block content %}
+<section style="max-width:700px;margin:16px auto" class="card">
+  <h2>اتصل بنا</h2>
+  <form class="needs-validation" method="post">
+    <div class="form-errors"></div>
+    {% csrf_token %}
+    <div class="form-row">
+      <label for="name">الاسم</label>
+      <input type="text" name="name" id="name" required>
+    </div>
+    <div class="form-row">
+      <label for="email">البريد الإلكتروني</label>
+      <input type="email" name="email" id="email" required>
+    </div>
+    <div class="form-row">
+      <label for="message">الرسالة</label>
+      <textarea name="message" id="message" rows="5" required></textarea>
+    </div>
+    <button class="btn" type="submit">أرسل</button>
+  </form>
+</section>
+{% endblock %}

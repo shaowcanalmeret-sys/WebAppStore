@@ -1,0 +1,63 @@
+
+{% extends 'base.html' %}{% block title %}المنتجات{% endblock %}
+{% block content %}
+<section class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2>عرض المنتجات</h2>
+     {% if user.is_superuser or user.role == 'admin' %}
+    <a href="{% url 'add_product' %}" class="btn">إضافة منتج</a>
+     {% endif %}
+  </div>
+  <table class="table" style="margin-top:12px">
+    <thead>
+      
+    
+      <tr>
+        <th>الصورة</th>
+        <th>الاسم</th>
+        <th>الوصف</th>
+        <th>السعر</th>
+        <th>المخزون</th>
+        <th>التصنيف</th>
+        <th>تاريخ الإضافة</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in all_products %}
+      <tr>
+        <td>
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="80">
+          {% else %}
+            لا توجد صورة
+          {% endif %}
+        </td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.description|truncatewords:15 }}</td>
+        <td>{{ product.price }} $</td>
+        <td>{{ product.stock }}</td>
+        <td>{{ product.category.name }}</td>
+        <td>{{ product.created_at|date:"Y-m-d" }}</td>
+        <td class="actions">
+          {% if user.is_superuser or user.role == 'admin' %}
+          <a class="btn btn-secondary" href="{% url 'edit_product' product.id %}">تعديل</a>
+          {% endif %}
+
+          {% if user.is_superuser or user.role == 'admin' %}
+          <a class="btn btn-secondary" href="{% url 'delete_product' product.id %}">حذف</a>
+           {% endif %}
+
+          
+        </td>
+      </tr>
+      </tbody>
+      {% empty %}
+       <tr>
+        <td colspan="7">لا توجد منتجات حالياً.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+

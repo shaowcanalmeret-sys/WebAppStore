@@ -1,0 +1,31 @@
+{% extends 'base.html' %}{% block title %}التعديل{% endblock %}
+
+{% block content %}
+
+
+<section><a href="{% url 'category' %}" class="btn">العودة الى صفحة العروض</a></section>
+<form method='POST'>
+    {% csrf_token %}
+    {{form.as_table}}
+    <button class="btn" type="submit">حفظ</button>
+    </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}إدارة المنتجات{% endblock %}
+{% block content %}
+<section class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2>إدارة المنتجات</h2>
+    <a href="{% url 'admin_product_add' %}" class="btn">إضافة منتج</a>
+  </div>
+  <table class="table" style="margin-top:12px">
+    <thead>
+      
+    <tbody>
+      <!-- example data; replace with Django loop -->
+      <tr>
+        <td>هاتف تجريبي</td>
+        <td>Flagship</td>
+        <td>1999</td>
+        <td>12</td>
+        <td class="actions">
+          <a class="btn secondary" href="#">تعديل</a>
+          <a class="btn" href="#">حذف</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+{% endblock %}
