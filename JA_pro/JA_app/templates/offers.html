@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}العروض{% endblock %}
+{% block content %}
+<section class="card">
+  <div style="display:flex;justify-content:space-between;align-items:center">
+    <h2>عرض المنتجات</h2>
+     {% if user.is_superuser or user.role == 'admin' %}
+    <a href="{% url 'add_offer' %}" class="btn">إضافة عرض</a>
+    {% endif %}
+  </div>
+  <table class="table" style="margin-top:12px">
+    <thead>
+      
+    
+      <tr>
+        <th>العنوان</th>
+        <th>الوصف</th>
+        <th>نسبة التخفيض</th>
+        <th>المنتج</th>
+        <th>تاريخ البدا</th>
+        <th>تاريخ الانتهاء</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      {% for offer in  offers %}
+      <tr>
+        <!-- <td>
+          {% if .image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="80">
+          {% else %}
+            لا توجد صورة
+          {% endif %}
+        </td> -->
+        <td>{{ offer.title }}</td>
+        <td>{{ offer.description|truncatewords:15 }}</td>
+        <td>{{ offer.discount_percentage }} %</td>
+        <td>{{ offer.product }} </td>
+        <td>{{ offer.start_date}}</td>
+        <td>{{ offer.end_date }}</td>
+         <td class="actions">
+          {% if user.is_superuser or user.role == 'admin' %}
+          <a class="btn btn-secondary" href="{% url 'edit_offer' offer.id %}">تعديل</a>
+          {% endif %}
+           {% if user.is_superuser or user.role == 'admin' %}
+          <a class="btn btn-secondary" href="{% url 'delete_offer' offer.id %}">حذف</a>
+          {% endif %}
+
+          
+        </td>
+      </tr>
+      {% empty %}
+       <tr>
+        <td colspan="7">لا توجد منتجات حالياً.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

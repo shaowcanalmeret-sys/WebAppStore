@@ -1,0 +1,254 @@
+/* site.css - cleaned and responsive */
+:root{
+  --bg:#f6f8fc;
+  --card:#ffffff;
+  --primary:#2563eb;
+  --access:#38bdf8;
+  --text:#0f172a;
+  --muted:#64748b;
+  --border: #e2e8f0;
+  --radius:10px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+*{box-sizing:border-box}
+/* body{margin:0;background:var(--bg);color:#111;line-height:1.5} */
+body {
+  background: linear-gradirnt(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+.container{max-width:1100px;margin:0 auto;padding:16px}
+.site-header{background:var(--card);box-shadow:0 2px 6px rgba(10,10,10,0.04);position:sticky;top:0;z-index:50}
+.site-header .container{display:flex;align-items:center;gap:12px}
+.brand{font-weight:700;color:var(--primary);text-decoration:none;font-size:1.25rem}
+.main-nav{margin-inline-start:auto;display:flex;gap:12px}
+.main-nav a{color:#111;text-decoration:none;padding:8px 12px;border-radius:8px}
+.main-nav a:hover{background:var(--bg)}
+.nav-toggle{display:none;background:none;border:0;font-size:1.25rem}
+.site-footer{padding:18px 0;text-align:center;color:var(--muted);margin-top:24px}
+
+/* Cards / product grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.card{background:var(--card);padding:12px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(12,18,32,0.04)}
+.product-image{height:220px;background:#f1f3f8;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+/* Forms */
+.form-row{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
+label{font-size:.95rem;color:var(--muted)}
+input[type="text"],input[type="email"],input[type="password"],textarea,select{
+  padding:10px;border:1px solid #e3e7ee;border-radius:8px;background:#fff;width:100%;
+}
+.btn{display:inline-block;padding:10px 16px;border-radius:8px;background:var(--primary);color:#fff;text-decoration:none;border:0;cursor:pointer}
+.btn.secondary{background:#f3f4f6;color:#111}
+
+/* Table admin */
+.table{width:100%;border-collapse:collapse}
+.table th,.table td{padding:10px;border-bottom:1px solid #eef;text-align:right}
+.actions{display:flex;gap:8px;justify-content:flex-end}
+
+/* Responsive */
+@media (max-width:768px){
+  .main-nav{display:none}
+  .nav-toggle{display:block;margin-left:auto}
+  .container{padding:12px}
+}
+
+
+
+
+
+
+
+
+.table-custom {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.table-custom thead th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    text-align: right;
+    padding: 15px 20px;
+}
+
+.table-custom tbody tr {
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table-custom tbody tr:hover {
+    background-color: #f8f9ff;
+    transform: translateX(-5px);
+}
+
+.table-custom tbody td {
+    padding: 12px 20px;
+    vertical-align: middle;
+    border-top: 1px solid #f0f0f0;
+}
+
+.table-custom tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* تنسيقات للخلايا الفارغة */
+.empty-state {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #adb5bd;
+}
+
+/* تنسيقات للبطاقة */
+.card {
+    border-radius: 12px;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-footer {
+    border-radius: 0 0 12px 12px;
+    background-color: #f8f9fa;
+}
+
+/* تحسينات للعرض على الأجهزة المحمولة */
+@media (max-width: 768px) {
+    .table-responsive {
+        border: none;
+    }
+   
+    .table-custom thead {
+        display: none;
+    }
+   
+    .table-custom tbody tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+    }
+   
+    .table-custom tbody td {
+        display: block;
+        text-align: left;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+   
+    .table-custom tbody td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 20px;
+        width: 45%;
+        padding-right: 10px;
+        font-weight: bold;
+        text-align: right;
+        color: #495057;
+    }
+}
+
+/* تنسيقات الخطوط العربية */
+body[dir="rtl"] .table-custom th,
+body[dir="rtl"] .table-custom td {
+    text-align: right;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+
+/* ألوان مميزة للصفوف الفردية والزوجية */
+.table-custom tbody tr:nth-child(odd) {
+    background-color: #fdfdfd;
+}
+
+.table-custom tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  direction: rtl;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.product-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.product-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.product-table img {
+  max-width: 80px;
+  height: auto;
+  border-radius: 5px;
+}

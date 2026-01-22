@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}تعديل منتج{% endblock %}
+{% block content %}
+<a href="{% url 'products' %}" class="btn">العودة الى صفحة المنتجات</a>
+<section class="card" style="max-width:800px;margin:16px auto">
+  <h2>تعديل منتج</h2>
+  <form method="post" class="needs-validation" enctype="multipart/form-data">
+    <div class="form-errors"></div>
+    {% csrf_token %}
+    <!-- Fields will be prefilled by Django view -->
+    <div class="form-row">
+      <label>اسم المنتج</label>
+      <input type="text" name="name" value="{{ product.name }}" required>
+   
+    <div class="form-row">
+      <label for="Category">الفئة</label>
+
+      <select name="category">
+        <option value="">اختر الفئة</option>
+        {% for cat in all_categories %}
+             <option value="{{cat.id}}">{{cat.name}}</option>
+             {%endfor%}
+      </select>
+    </div>
+    <div class="form-row">
+      <label>السعر</label>
+      <input type="text" name="price" value="{{ product.price }}" required>
+    </div>
+    <div class="form-row">
+      <label>الصورة</label>
+      <input type="file" name="image" value="{{ product.image }}" required>
+    </div>
+    <div class="form-row">
+      <label>المخزون</label>
+      <input type="text" name="stock" value="{{ product.stock }}" required>
+    </div>
+    <div class="form-row">
+      <label>الوصف</label>
+      <textarea name="description" rows="4">{{ product.description }}</textarea>
+    </div>
+    <button class="btn" type="submit">حفظ التعديلات</button>
+  </form>
+</section>
+{% endblock %}

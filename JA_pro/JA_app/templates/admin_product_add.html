@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block title %}إضافة منتج{% endblock %}
+{% block content %}
+<a href="{% url 'products' %}" class="btn">العودة الى صفحة المنتجات</a>
+<section class="card" style="max-width:800px;margin:16px auto">
+  <h2>إضافة منتج</h2>
+  <form method="post" class="needs-validation" enctype="multipart/form-data">
+    <div class="form-errors"></div>
+    {% csrf_token %}
+    <div class="form-row">
+      <label for="name">اسم المنتج</label>
+      <input type="text" name="name" required>
+    </div>
+    <div class="form-row">
+      <label for="description">الوصف</label>
+      <textarea name="description" rows="4"></textarea>
+    </div>
+    <!-- <div class="form-row">
+      <label for="">الـ slug</label>
+      <input type="text" name="" required>
+    </div> -->
+    <div class="form-row">
+      <label for="Category">الفئة</label>
+
+      <select name="category">
+        <option value="">اختر الفئة</option>
+        {% for cat in all_categories %}
+             <option value="{{cat.id}}">{{cat.name}}</option>
+             {%endfor%}
+      </select>
+    </div>
+    <div class="form-row">
+      <label for="price">السعر</label>
+      <input type="text" name="price" required>
+    </div>
+
+    <div class="form-row">
+      <label for="image">الصورة</label>
+      <input type="file" name="image" required>
+    </div>
+
+    <div class="form-row">
+      <label for="stock">المخزون</label>
+      <input type="text" name="stock" required>
+    </div>
+    
+    <div class="form-row">
+      <label for="created_at">تاريخ الإضافة</label>
+      <input type="text" name="created_at" required>
+    </div>
+    <button class="btn" type="submit">حفظ</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,168 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}متجر الهواتف{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/site.css' %}">
+   <link rel="stylesheet" href="{% static 'css/site.css/bootstrap.min.css' %}">
+   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> -->
+  <script defer src="{% static 'js/site.js' %}"></script>
+</head>
+<body>
+{% if messages %}
+  <div id="messages">
+    {% for message in messages %}
+      <div class="msg {{ message.tags }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+  <header class="site-header">
+
+
+   <style>
+/* =========================
+   Messages Container
+========================= */
+#messages {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  max-width: 340px;
+  direction: rtl;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* =========================
+   Base Message Style
+========================= */
+.msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 16px;
+  margin-bottom: 12px;
+
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+
+  background: #f5f5f5;
+  color: #333;
+
+  border-right: 6px solid #999;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+
+  animation: fadeSlide 0.35s ease-out;
+}
+
+/* =========================
+   Success
+========================= */
+.msg.success {
+  background: linear-gradient(135deg, #e6fff3, #ccfbe8);
+  color: #065f46;
+  border-right-color: #22c55e;
+}
+
+/* =========================
+   Error (Strong but Elegant)
+========================= */
+.msg.error {
+  background: linear-gradient(135deg, #fff1f1, #ffd6d6);
+  color: #7f1d1d;
+  border-right-color: #dc2626;
+
+  font-weight: 600;
+
+  box-shadow:
+    0 10px 25px rgba(220, 38, 38, 0.35),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+
+  animation: fadeSlide 0.35s ease-out, pulse 1.2s ease-in-out;
+}
+
+/* =========================
+   Warning
+========================= */
+.msg.warning {
+  background: linear-gradient(135deg, #fff8e6, #ffedc2);
+  color: #7a4a00;
+  border-right-color: #f59e0b;
+}
+
+/* =========================
+   Animations
+========================= */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(220, 38, 38, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+}
+</style>
+</style>
+    <div class="container">
+      <a href="{% url 'home' %}" class="brand">متجر الهواتف</a>
+      <a class="dropdown-item" href="{% url 'logout' %}"><i data-feather="log-out", class="btn">logout</i></a>
+        
+      <nav class="main-nav">
+        <a href="{% url 'category' %}">الفئات</a>
+        <a href="{% url 'products' %}">المنتجات</a>
+        <a href="{% url 'offers' %}">العروض</a>
+        <a href="{% url 'about' %}">من نحن</a>
+        <a href="{% url 'contact' %}">اتصل بنا</a>
+        <a href="{% url 'login' %}">تسجيل الدخول</a>
+      </nav>
+      <button class="nav-toggle" aria-label="فتح القائمة">☰</button>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© {{ now.year }} متجر الهواتف — حقوق النشر محفوظة</p>
+      <p>تصميم متجاوب، مخصص للهواتف الذكية</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+<script>
+  setTimeout(() => {
+    const m = document.getElementById("messages");
+    if (m) m.style.opacity = "0";
+    setTimeout(() => m?.remove(), 400);
+  }, 4000);
+</script>
